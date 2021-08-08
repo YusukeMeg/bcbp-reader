@@ -4,7 +4,6 @@ const ZXing = require("@zxing/library")
 (async ()=>{
     debug_point = document.getElementById("debug");
 
-    reader = new ZXing.BrowserQRCodeReader();
     // debug_point.innerText = "debuglog";
     // image_point = document.getElementById("ticket");
     // await new Promise((resolve,reject)=>{
