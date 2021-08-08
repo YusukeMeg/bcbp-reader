@@ -20,7 +20,7 @@ const ZXing = require("@zxing/library")
     // const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     var myReq;
     codetext = await new Promise(resolve=>{
-        async function tick() {
+        function tick() {
           if (video.readyState === video.HAVE_ENOUGH_DATA) {
               ctx.height = video.videoHeight;
               ctx.width = video.videoWidth;
@@ -30,7 +30,7 @@ const ZXing = require("@zxing/library")
                   inversionAttempts: "dontInvert",
               });
               if(code){
-                  code = await reader.decodeFromVideoDevice(undefined,video);
+                  code = reader.decodeFromVideoDevice(undefined,video);
               }
               console.log(code)              
               if(code && /^M1/.test(code.data)){
