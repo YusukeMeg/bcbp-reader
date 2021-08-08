@@ -1,11 +1,10 @@
 
 const jsQR = require("jsqr");
+const ZXing = require("@zxing/library")
 (async ()=>{
     debug_point = document.getElementById("debug");
-    if(1){
 
-    }
-
+    const reader = new ZXing.BrowserQRCodeReader();
     // debug_point.innerText = "debuglog";
     // image_point = document.getElementById("ticket");
     // await new Promise((resolve,reject)=>{
@@ -21,7 +20,7 @@ const jsQR = require("jsqr");
     // const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     var myReq;
     codetext = await new Promise(resolve=>{
-        function tick() {
+        async function tick() {
           if (video.readyState === video.HAVE_ENOUGH_DATA) {
               ctx.height = video.videoHeight;
               ctx.width = video.videoWidth;
@@ -30,7 +29,10 @@ const jsQR = require("jsqr");
               var code = jsQR(imageData.data, imageData.width, imageData.height, {
                   inversionAttempts: "dontInvert",
               });
-              console.log(code)
+              if(code){
+                  code = await reader.decodeFromVideoDevice(undefined,video);
+              }
+              console.log(code)              
               if(code && /^M1/.test(code.data)){
                   resolve(code.data)
               }
