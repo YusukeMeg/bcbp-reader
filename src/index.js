@@ -1,6 +1,6 @@
 
 const jsQR = require("jsqr");
-const ZXing = require("@zxing/library")
+
 (async ()=>{
     debug_point = document.getElementById("debug");
 
